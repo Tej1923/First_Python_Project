@@ -41,12 +41,14 @@ def run_alexa():
                 pywhatkit.playonyt(song)
             except Exception as e:
                   print("Error in play command:",e)
+                  break
         elif 'time' in command:
             try:
                 time = datetime.datetime.now().strftime('%I:%M %p')
                 talk('Current time is '+time)
             except Exception as e:
                 print("Error in time command:",e)
+                break
         elif 'who is' in command:
             try:
                 person=command.replace('who is','')
@@ -55,31 +57,38 @@ def run_alexa():
                 talk(info)
             except Exception as e:
                 print("Error in who is command:",e)
+                break
         elif 'date' in command:
             try:
                 talk('Sorry, I have a headache')
             except Exception as e:
                 print("Error in date command:",e)
+                break
+
         elif 'are you ok' in command:
             try:
                 talk('No, I am not feeling well')
             except Exception as e:
                 print("Error in are you ok command:",e)
+                break
         elif 'joke' in command:
             try:
                 talk(pyjokes.get_joke())
             except Exception as e:
                 print("Error in joke command:",e)
+                break
         elif command=='stop':
             try:
                 talk('Goodbye!')
                 break
             except Exception as e:
                 print("Error in stop command:",e)
+                break
         else:
             try:
                 talk('please say the command again.')
             except Exception as e:
                 print("Error in else command:",e)
+                break
 
 run_alexa()
