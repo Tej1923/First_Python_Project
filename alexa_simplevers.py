@@ -34,28 +34,52 @@ def run_alexa():
     while True:
         command = take_command()
         print(command)
-        
         if 'play' in command:
-            song=command.replace('play','')
-            talk('playing' + song)
-            pywhatkit.playonyt(song)
+            try:
+                song=command.replace('play','')
+                talk('playing' + song)
+                pywhatkit.playonyt(song)
+            except Exception as e:
+                  print("Error in play command:",e)
         elif 'time' in command:
-            time = datetime.datetime.now().strftime('%I:%M %p')
-            talk('Current time is '+time)
+            try:
+                time = datetime.datetime.now().strftime('%I:%M %p')
+                talk('Current time is '+time)
+            except Exception as e:
+                print("Error in time command:",e)
         elif 'who is' in command:
-            person=command.replace('who is','')
-            info=wikipedia.summary(person,1)
-            print(info)
-            talk(info)
+            try:
+                person=command.replace('who is','')
+                info=wikipedia.summary(person,1)
+                print(info)
+                talk(info)
+            except Exception as e:
+                print("Error in who is command:",e)
         elif 'date' in command:
-            talk('Sorry, I have a headache')
+            try:
+                talk('Sorry, I have a headache')
+            except Exception as e:
+                print("Error in date command:",e)
         elif 'are you ok' in command:
-            talk('No, I am not feeling well')
+            try:
+                talk('No, I am not feeling well')
+            except Exception as e:
+                print("Error in are you ok command:",e)
         elif 'joke' in command:
-            talk(pyjokes.get_joke())
+            try:
+                talk(pyjokes.get_joke())
+            except Exception as e:
+                print("Error in joke command:",e)
         elif command=='stop':
-            talk('Goodbye!')
-            break
+            try:
+                talk('Goodbye!')
+                break
+            except Exception as e:
+                print("Error in stop command:",e)
         else:
-            talk('please say the command again.')
+            try:
+                talk('please say the command again.')
+            except Exception as e:
+                print("Error in else command:",e)
+
 run_alexa()
